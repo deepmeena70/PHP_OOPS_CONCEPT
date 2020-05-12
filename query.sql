@@ -1,0 +1,17 @@
+CREATE DATABASE my_MVC;
+
+DROP DATABASE my_MVC;
+
+USE my_MVC
+CREATE TABLE users(
+    id int(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    u_password VARCHAR(30) NOT NULL
+)
+
+USE my_MVC
+DROP TABLE users;
+
+USE my_MVC
+SELECT * FROM users;
