@@ -1,6 +1,7 @@
 <?php 
     class Controller
     {
+
         public function add($req, $res)
         {
             

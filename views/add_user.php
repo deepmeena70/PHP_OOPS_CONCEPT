@@ -5,7 +5,7 @@
     <div class="container">
 
         <div class="col-10 mx-auto mt-5">
-            <form class="form-row">
+            <form class="form-row" method='post' action="">
                 <div class="col">
                     <input class="form-control" type="text" name="username" placeholder="Enter a name">
                 </div>
@@ -24,3 +24,5 @@
 </body>
 
 </html>
+
+<?php echo $_SERVER['REQUEST_URI']?>

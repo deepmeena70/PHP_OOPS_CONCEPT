@@ -9,7 +9,7 @@
         public function start()
         {
             try{
-                $pdo = new PDO("mysql:host=" . $this->db_host ."", $this->db_user, $this->db_pass);
+                $pdo = new PDO("mysql:host={$this->db_host}", $this->db_user, $this->db_pass);
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }catch(PDOException $e){
                 echo "Error : " . $e->getMessage() . "<br/>";
