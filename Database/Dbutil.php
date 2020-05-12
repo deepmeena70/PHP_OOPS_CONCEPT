@@ -68,7 +68,7 @@ class Dbutil
         $conn = null;
     }
 
-    function insert_data($conn, $user)
+    function create_data($conn, $user)
     {
         try {
             $stmt = $conn->start()->prepare("USE $conn->db_name;INSERT INTO users(username, email, u_password)VALUES(?, ?, ?)");
@@ -93,7 +93,7 @@ class Dbutil
         }
     }
 
-    function add_data($conn, $user)
+    function edit_data($conn, $user)
     {
         try {
             $stmt = $conn->start()->prepare("USE $conn->db_name;INSERT INTO users(username, email, u_password)VALUES(?, ?, ?) WHERE username= ? &email = ?");

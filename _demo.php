@@ -11,5 +11,5 @@ $db = new Dbutil();
 // $db->drop_db($conn);
 // $db->create_table($conn);
 // $db->drop_table($conn);
-$db->add_data($conn);
+// $db->edit_data($conn);
 // echo "checked";
