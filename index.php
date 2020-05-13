@@ -1,17 +1,33 @@
 <?php
 
-require 'Router.php';
+// load database classes
+require_once 'Database\Connection.php';
+require_once 'Database\Dbutil.php';
 
-$router = new Router();
-// How GET requests will be defined
+//load Controller class
+require_once 'Controller.php';
 
-$router->get('/some/route', function ($request) {
-    // The $request argument of the callback 
-    // will contain information about the request
-    return "Content";
-});
-// How POST requests will be defined
-$router->post('/some/route', function ($request) {
-    // How to get data from request body
-    $body = $request->getBody();
-});
+//load User class
+require_once 'User.php';
+
+//load Objects
+$conn = new Connection();
+$db = new Dbutil();
+$user = new User();
+
+
+// $conn->start();
+// $db->create_db($conn);
+// $db->drop_db($conn);
+// $db->create_table($conn);
+// $db->drop_table($conn);
+// $db->edit_data($conn);
+// $db->show_table($conn);
+// echo "checked";
+
+
+// Route::('URI', 'controller')
+
+Controller::index($conn, $db);
+
+

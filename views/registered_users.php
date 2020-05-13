@@ -25,20 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>xyz@mail.com</td>
-                    <td class="col-4 mx-auto">
-                        <div class="row">
-                            <form class="col-2" method="" action="">
-                                <button class="btn btn-primary">EDIT</button>
-                            </form>
-                            <form class="col-2" method="" action="">
-                                <button class="btn btn-danger">Remove</button>
-                            </form>
-                        </div>
-                    </td>
+                <?php include '_table_body.php'?>
             </tbody>
         </table>
     </div>

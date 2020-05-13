@@ -1,29 +1,37 @@
 <?php 
     class Controller
     {
-
-        public function add($req, $res)
+        public static function index($conn, $db)
         {
+            $result = $db->show_table($conn);
+
             
-        }
+            // echo gettype($result);
 
-        public function remove_all($req,$res)
-        {
-
-        }
-
-        public function edit()
-        {
-
-        }
-
-        public function show($req, $res)
-        {
+            // print_r($result);
             
+                                   
+            include 'views\registered_users.php';
+        }
+
+        public static function add()
+        {
+           
+        }
+
+        public static function remove_all()
+        {
+
+        }
+
+        public static function edit()
+        {
+
         }
 
 
-        public function remove($req, $res)
+
+        public static function remove()
         {
             
         }
