@@ -5,22 +5,13 @@
     <div class="container">
 
 
-        <div class="row">
-            <form class ="mt-5 ml-3" method="" action="">
-                <button class="btn btn-primary" type="submit">Add User</button>
-            </form>
-                
-            <form class ="mt-5 ml-2" method="" action="">
-                <button class="btn btn-danger" type="submit">Remove All</button>
-            </form>
-        </div>
-
-        <table class="table table-bordered mt-2">
+        <table class="table table-bordered mt-5">
             <thead>
                 <tr class="">
                     <th scope="col">#</th>
                     <th scope="col">user</th>
                     <th scope="col">email</th>
+                    <th scop="col">password</th>
                     <th scope="col">action</th>
                 </tr>
             </thead>
@@ -28,6 +19,13 @@
                 <?php include '_table_body.php'?>
             </tbody>
         </table>
+        
+        <div class="row">
+            <div class="col">
+                <?php include 'add_user.php'?>
+            </div>
+        </div>
+        
     </div>
 
 </body>

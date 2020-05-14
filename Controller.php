@@ -1,7 +1,8 @@
 <?php 
     class Controller
     {
-        public static function index($conn, $db)
+        
+        public function index($conn, $db)
         {
             $result = $db->show_table($conn);
 
@@ -11,29 +12,62 @@
             // print_r($result);
             
                                    
-            include 'views\registered_users.php';
+            return include 'views\registered_users.php';
         }
 
-        public static function add()
+        public function add($conn, $db, $user)
         {
-           
+            $user->setUsername($_REQUEST['username']);
+            $user->setEmail($_REQUEST['email']);
+            $user->setPassword($_REQUEST['password']);
+
+            $username = $user->getUsername();
+
+            $email = $user->getEmail();
+
+            $pass = $user->getPassword();
+
+            $db->create_data($conn, $username, $email ,$pass);
+
+            return include 'index.php';
+
         }
 
-        public static function remove_all()
+
+        public function edit($conn, $db, $user)
         {
-
-        }
-
-        public static function edit()
-        {
-
-        }
-
-
-
-        public static function remove()
-        {
+            $user->setId($_REQUEST['id']);
+            $user->setUsername($_REQUEST['username']);
+            $user->setEmail($_REQUEST['email']);
+            $user->setPassword($_REQUEST['password']);
             
+            $id = $user->getId();
+
+            $username = $user->getUsername();
+
+            $email = $user->getEmail();
+
+            $pass = $user->getPassword();
+            
+            $result = $db->show_row($conn, $id);
+
+            include 'views\edit_users.php';
+
+            $db->edit_data($conn, $id, $username, $email, $pass);
+            
+        } 
+
+
+
+        public function remove($conn, $db, $user)
+        {
+            $user = $user->setId($_REQUEST['id']);
+
+            $id = $user->getId();
+
+            $db->remove_data($conn, $id);
+
+            return include 'index.php';            
         }
 
     }

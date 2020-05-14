@@ -4,14 +4,11 @@
     <th scope="row"><?php echo $val[0] ?></th>
     <td><?php echo $val[1] ?></td>
     <td><?php echo $val[2] ?></td>
+    <td><?php echo $val[3] ?></td>
     <td class="col-4 mx-auto">
         <div class="row">
-            <form class="col-2" method="" action="">
-                <button class="btn btn-primary">EDIT</button>
-            </form>
-            <form class="col-2" method="" action="">
-                <button class="btn btn-danger">Remove</button>
-            </form>
+            <a class="ml-3" href="edit.php/?id=<?php echo $val[0]?>"><button class="btn btn-primary" type="">Edit</button></a>
+            <a class="ml-3" href="delete.php/?id=<?php echo $val[0]?>"><button class="btn btn-danger" type="">Remove</button></a>
         </div>
     </td>
 </tr>

@@ -1,19 +1,6 @@
 <?php
 
-// load database classes
-require_once 'Database\Connection.php';
-require_once 'Database\Dbutil.php';
-
-//load Controller class
-require_once 'Controller.php';
-
-//load User class
-require_once 'User.php';
-
-//load Objects
-$conn = new Connection();
-$db = new Dbutil();
-$user = new User();
+require 'load.php';
 
 
 // $conn->start();
@@ -26,8 +13,8 @@ $user = new User();
 // echo "checked";
 
 
-// Route::('URI', 'controller')
+$control->index($conn, $db);
 
-Controller::index($conn, $db);
+
 
 

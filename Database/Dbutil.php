@@ -60,50 +60,25 @@ class Dbutil
         return $result;
     }
 
-    function drop_table($conn)
-    {
-        try {
-            $stmt = $conn->start()->prepare("DROP TABLE users");
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo $stmt . "<br>" . $e->getMessage();
-        }
+    // function drop_table($conn)
+    // {
+    //     try {
+    //         $stmt = $conn->start()->prepare("DROP TABLE users");
+    //         $stmt->execute();
+    //     } catch (PDOException $e) {
+    //         echo $stmt . "<br>" . $e->getMessage();
+    //     }
 
-        $conn = null;
-    }
+    //     $conn = null;
+    // }
 
-    function create_data($conn, $user)
+    function create_data($conn, $username, $email, $pass)
     {
         try {
             $stmt = $conn->start()->prepare("INSERT INTO users(username, email, u_password)VALUES(?, ?, ?)");
-            $stmt->bindParam(1, $user->username);
-            $stmt->bindParam(2, $user->email);
-            $stmt->bindParam(3, $user->password);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo $stmt . "<br>" . $e->getMessage();
-        }
-    }
-
-    function show_data($conn,$user)
-    {
-        try {
-            $stmt = $conn->start()->prepare("SELECT * FROM WHERE username=?");
-            $stmt->bindParam(1, $user->username);
-            $stmt->bindParam(2, $user->email);
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo $stmt . "<br>" . $e->getMessage();
-        }
-    }
-
-    function edit_data($conn, $user)
-    {
-        try {
-            $stmt = $conn->start()->prepare("INSERT INTO users(username, email, u_password)VALUES(?, ?, ?) WHERE username= ? &email = ?");
-            $stmt->bindParam(1, $user->username);
-            $stmt->bindParam(2, $user->email);
-            $stmt->bindParam(3, $user->password);
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $email);
+            $stmt->bindParam(3, $pass);
             $stmt->execute();
         } catch (PDOException $e) {
             echo $stmt . "<br>" . $e->getMessage();
@@ -111,12 +86,44 @@ class Dbutil
     }
 
 
-    function remove_data($conn, $user)
+    function show_row($conn,$id)
     {
         try {
-            $stmt = $conn->start()->prepare("DELETE FROM users where username= ? & email = ?");
-            $stmt->bindParam(1, $user->username);
-            $stmt->bindParam(2, $user->email);            
+            $stmt = $conn->start()->prepare("SELECT * FROM WHERE id=?");
+            $stmt->bindParam(1, $id);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        } catch (PDOException $e) {
+            echo $stmt . "<br>" . $e->getMessage();
+        }
+
+        return $result;
+    }
+
+
+
+    function edit_data($conn, $id, $username, $email, $pass)
+    {
+        try {
+            $stmt = $conn->start()->prepare("INSERT INTO users(username, email, u_password)VALUES(?, ?, ?) WHERE id=?");
+            $stmt->bindParam(1, $username);
+            $stmt->bindParam(2, $email);
+            $stmt->bindParam(3, $pass);
+            $stmt->bindParam(4, $id);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo $stmt . "<br>" . $e->getMessage();
+        }
+    }
+
+
+    function remove_data($conn, $id)
+    {
+        try {
+            $stmt = $conn->start()->prepare("DELETE FROM users where id=?");
+            $stmt->bindParam(1, $id);
+            $stmt->execute();
+            $stmt = $conn->start()->prepare("ALTER TABLE users AUTO_INCREMENT = 1");
             $stmt->execute();
         } catch (PDOException $e) {
             echo $stmt . "<br>" . $e->getMessage();
