@@ -89,7 +89,7 @@ class Dbutil
     function show_row($conn,$id)
     {
         try {
-            $stmt = $conn->start()->prepare("SELECT * FROM WHERE id=?");
+            $stmt = $conn->start()->prepare("SELECT * FROM users WHERE id=?");
             $stmt->bindParam(1, $id);
             $stmt->execute();
             $result = $stmt->fetchAll();
@@ -102,10 +102,13 @@ class Dbutil
 
 
 
-    function edit_data($conn, $id, $username, $email, $pass)
+    function update_data($conn, $id, $username, $email, $pass)
     {
         try {
-            $stmt = $conn->start()->prepare("INSERT INTO users(username, email, u_password)VALUES(?, ?, ?) WHERE id=?");
+            $stmt = $conn->start()->prepare("UPDATE users
+            SET username = ?, email= ?, u_password = ?
+            WHERE id = ?");
+            // echo $id.$username.$email.$pass;
             $stmt->bindParam(1, $username);
             $stmt->bindParam(2, $email);
             $stmt->bindParam(3, $pass);
@@ -114,6 +117,7 @@ class Dbutil
         } catch (PDOException $e) {
             echo $stmt . "<br>" . $e->getMessage();
         }
+        // echo "completed";
     }
 
 

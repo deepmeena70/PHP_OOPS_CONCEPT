@@ -12,7 +12,8 @@
             // print_r($result);
             
                                    
-            return include 'views\registered_users.php';
+            include 'views\registered_users.php';
+            die();
         }
 
         public function add($conn, $db, $user)
@@ -29,7 +30,8 @@
 
             $db->create_data($conn, $username, $email ,$pass);
 
-            return include 'index.php';
+            header('Location: /');
+            die(); 
 
         }
 
@@ -37,10 +39,24 @@
         public function edit($conn, $db, $user)
         {
             $user->setId($_REQUEST['id']);
+            
+            $id = $user->getId();            
+            
+            $result = $db->show_row($conn, $id);
+
+            // header('Location: /views/edit_users.php');
+
+            include 'views\edit_users.php';
+
+        } 
+
+        public function update($conn, $db, $user)
+        {
+            $user->setId($_REQUEST['id']);
             $user->setUsername($_REQUEST['username']);
             $user->setEmail($_REQUEST['email']);
             $user->setPassword($_REQUEST['password']);
-            
+
             $id = $user->getId();
 
             $username = $user->getUsername();
@@ -48,14 +64,14 @@
             $email = $user->getEmail();
 
             $pass = $user->getPassword();
-            
-            $result = $db->show_row($conn, $id);
 
-            include 'views\edit_users.php';
+            $db->update_data($conn, $id, $username, $email, $pass);
 
-            $db->edit_data($conn, $id, $username, $email, $pass);
-            
-        } 
+            header('Location: /');
+
+            die();
+
+        }
 
 
 
@@ -67,7 +83,8 @@
 
             $db->remove_data($conn, $id);
 
-            return include 'index.php';            
+            header('Location: /');
+            die();            
         }
 
     }
