@@ -48,7 +48,6 @@
 
             include 'views\edit_users.php';
 
-
         } 
 
         public function update($conn, $db, $user)
@@ -85,7 +84,6 @@
             $db->remove_data($conn, $id);
 
             header('Location: /');
-
             die();            
         }
 
